@@ -2,10 +2,8 @@
 
 namespace MWStake\MediaWiki\Component\DynamicFileDispatcher;
 
-use MediaWiki\Utils\UrlUtils;
-use MWStake\MediaWiki\Component\DynamicFileDispatcher\IDynamicFileModule;
 use MediaWiki\HookContainer\HookContainer;
-use ParserHooks\HookHandler;
+use MediaWiki\Utils\UrlUtils;
 
 class DynamicFileDispatcherFactory {
 
@@ -25,11 +23,10 @@ class DynamicFileDispatcherFactory {
 	protected UrlUtils $urlUtils;
 
 	/**
-	 *
-	 */
-	/**
-	 *
-	 * @param type $config
+	 * @param array $modules
+	 * @param HookContainer $hookContainer
+	 * @param UrlUtils $urlUtils
+	 * @throws \MWException
 	 */
 	public function __construct( array $modules, HookContainer $hookContainer, UrlUtils $urlUtils ) {
 		$this->hookContainer = $hookContainer;

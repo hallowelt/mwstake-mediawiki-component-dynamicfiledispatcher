@@ -2,14 +2,11 @@
 
 namespace MWStake\MediaWiki\Component\DynamicFileDispatcher\Rest;
 
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\SimpleHandler;
 use MWStake\MediaWiki\Component\DynamicFileDispatcher\DynamicFileDispatcherFactory;
 use MWStake\MediaWiki\Component\DynamicFileDispatcher\IDynamicFileModule;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\Authority;
-use MediaWiki\Rest\SimpleHandler;
-use MediaWiki\Rest\Stream;
-use Psr\Http\Message\StreamInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class Handler extends SimpleHandler {
@@ -48,7 +45,7 @@ class Handler extends SimpleHandler {
 		}
 		$file = $module->getFile( $queryParams );
 		if ( !$file ) {
-			throw new HttpException( 'File not found', 404);
+			throw new HttpException( 'File not found', 404 );
 		}
 
 		$response = $this->getResponseFactory()->create();
@@ -56,7 +53,6 @@ class Handler extends SimpleHandler {
 		$response->setBody( $file->getStream() );
 
 		return $response;
-
 	}
 
 	/**

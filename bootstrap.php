@@ -6,7 +6,7 @@ if ( defined( 'MWSTAKE_MEDIAWIKI_COMPONENT_DYNAMICFILEDISPATCHER_VERSION' ) ) {
 	return;
 }
 
-define( 'MWSTAKE_MEDIAWIKI_COMPONENT_DYNAMICFILEDISPATCHER_VERSION', '1.0.0' );
+define( 'MWSTAKE_MEDIAWIKI_COMPONENT_DYNAMICFILEDISPATCHER_VERSION', '1.0.1' );
 
 Bootstrapper::getInstance()
 	->register( 'dynamicFileDispatcher', static function () {
@@ -14,16 +14,13 @@ Bootstrapper::getInstance()
 
 		$GLOBALS['mwsgMWStakeDynamicFileDispatcherModules'] = [
 			'articlepreviewimage' => [
-				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\ArticlePreviewImage::class,
-				'services' => [ 'MimeAnalyzer' ],
+				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\ArticlePreviewImage::class
 			],
 			'groupimage' => [
-				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\GroupImage::class,
-				'services' => [ 'MimeAnalyzer' ],
+				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\GroupImage::class
 			],
 			'userprofileimage' => [
-				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\UserProfileImage::class,
-				'services' => [ 'MimeAnalyzer' ],
+				'class' => \MWStake\MediaWiki\Component\DynamicFileDispatcher\Module\UserProfileImage::class
 			],
 		];
 

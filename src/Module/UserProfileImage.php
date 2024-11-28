@@ -4,24 +4,10 @@ namespace MWStake\MediaWiki\Component\DynamicFileDispatcher\Module;
 
 use MediaWiki\Permissions\Authority;
 use MWStake\MediaWiki\Component\DynamicFileDispatcher\File\AnonImage;
-use MWStake\MediaWiki\Component\DynamicFileDispatcher\File\DefaultArticlePreviewImage;
 use MWStake\MediaWiki\Component\DynamicFileDispatcher\IDynamicFile;
 use MWStake\MediaWiki\Component\DynamicFileDispatcher\IDynamicFileModule;
-use Wikimedia\Mime\MimeAnalyzer;
 
 class UserProfileImage implements IDynamicFileModule {
-
-	/**
-	 * @var MimeAnalyzer
-	 */
-	protected MimeAnalyzer $mimeAnalyzer;
-
-	/**
-	 * @param MimeAnalyzer $mimeAnalyzer
-	 */
-	public function __construct( MimeAnalyzer $mimeAnalyzer ) {
-		$this->mimeAnalyzer = $mimeAnalyzer;
-	}
 
 	/**
 	 * @inheritDoc
@@ -34,6 +20,6 @@ class UserProfileImage implements IDynamicFileModule {
 	 * @inheritDoc
 	 */
 	public function getFile( array $params ): ?IDynamicFile {
-		return new AnonImage( $this->mimeAnalyzer );
+		return new AnonImage();
 	}
 }

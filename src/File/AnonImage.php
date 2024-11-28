@@ -2,20 +2,11 @@
 
 namespace MWStake\MediaWiki\Component\DynamicFileDispatcher\File;
 
-use BlueSpice\DynamicFileDispatcher\Module;
-use MWStake\MediaWiki\Component\DynamicFileDispatcher\DynamicLocalFile;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Rest\Stream;
+use MWStake\MediaWiki\Component\DynamicFileDispatcher\IDynamicFile;
+use Psr\Http\Message\StreamInterface;
 
-class AnonImage extends DynamicLocalFile {
-
-	/**
-	 *
-	 * @return string
-	 */
-	protected function getAbsolutePath() {
-		return dirname( __DIR__, 2 ) . '/resources/defaultUserImage.png';
-	}
+class AnonImage implements IDynamicFile {
 
 	/**
 	 * @return string
@@ -23,4 +14,12 @@ class AnonImage extends DynamicLocalFile {
 	public function getMimeType(): string {
 		return 'image/png';
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getStream(): StreamInterface {
+		return new Stream( fopen( dirname( __DIR__, 2 ) . '/resources/defaultUserImage.png', 'rb' ) );
+	}
+
 }
