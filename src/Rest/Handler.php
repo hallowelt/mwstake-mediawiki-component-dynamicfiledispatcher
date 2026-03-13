@@ -47,6 +47,11 @@ class Handler extends SimpleHandler {
 		if ( !$file ) {
 			throw new HttpException( 'File not found', 404 );
 		}
+		
+		// Clear output buffer to make sure nothing gets mixed in with file content
+		while ( ob_get_level() ) {
+			ob_end_clean();
+		}
 
 		$response = $this->getResponseFactory()->create();
 		$response->setHeader( 'Content-Type', $file->getMimeType() );
