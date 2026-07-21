@@ -29,6 +29,9 @@ class Handler extends SimpleHandler {
 		$this->moduleFactory = $factory;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function needsReadAccess() {
 		return false;
 	}
