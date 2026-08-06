@@ -2,6 +2,7 @@
 
 namespace MWStake\MediaWiki\Component\DynamicFileDispatcher\Rest;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\ResponseInterface;
@@ -74,7 +75,7 @@ class Handler extends SimpleHandler {
 			return null;
 		}
 		$queryParams = $this->getRequest()->getQueryParams();
-		$authority = \RequestContext::getMain()->getUser();
+		$authority = RequestContext::getMain()->getUser();
 		if ( !( $authority instanceof Authority ) ) {
 			$this->resolvedFile = null;
 			return null;
